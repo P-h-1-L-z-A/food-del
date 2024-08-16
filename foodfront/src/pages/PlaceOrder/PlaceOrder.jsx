@@ -379,6 +379,10 @@ const PlaceOrder = () => {
               <b>$ {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 15}</b>
             </div>
           </div>
+
+          <div className="payment-options">
+            
+          </div>
           <button type="submit" disabled={loading}>
             {loading ? "Processing..." : "Payment"}
           </button>
