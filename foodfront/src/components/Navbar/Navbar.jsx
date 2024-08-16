@@ -69,7 +69,7 @@ const Navbar = ({ setShowLogin }) => {
     if (theme === "light") {
       document.body.classList.add("dark-theme");
       setTheme("dark");
-    } else {
+    }else if(theme === "dark")  {
       document.body.classList.remove("dark-theme");
       setTheme("light");
     }

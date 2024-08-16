@@ -172,10 +172,7 @@ body {
 }
 
 .navbar-right .slider .moon img{
-  /* padding-left: 10px; */
   position: absolute;
-  /* padding-left: 20px; */
-  /* padding-left: 10px; */
   right: 2px;
   top:3px;
   width: 14px;
@@ -183,10 +180,7 @@ body {
   z-index: 1;
 }
 .navbar-right .slider .sun img{
-  /* padding-left: 10px; */
   position: relative;
-  /* padding-left: 20px; */
-  /* padding-left: 10px; */
   margin-top: 3px;
   margin-left: 1.5px;
   width: 14px;
