@@ -1,10 +1,10 @@
 import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken" //authentication
-// import bcrypt from "bcrypt" //to encrypt the password
 import validator from "validator"
+import bcrypt from 'bcryptjs';//to encrypt the password
+
 
 //login user
-const bcrypt = require('bcryptjs');
 
 const loginUser = async (req,res)=>{
 
