@@ -88,7 +88,12 @@ const Navbar = ({ setShowLogin }) => {
       <div className='navbar-right'>
         <label className="toggle-button">
           <input type="checkbox" onChange={toggleTheme} />
-          <span className="slider"></span>
+          <span className = "slider">
+          {theme==="light" ?
+          <div className= "moon"><img src={assets.moon} alt="" /></div>:
+          <div className= "sun"><img src={assets.sun} alt="" /></div>
+          }
+          </span>
         </label>
 
         {/* <button className= "icon" onClick={toggleTheme}>
@@ -96,7 +101,7 @@ const Navbar = ({ setShowLogin }) => {
           {theme === "light" ? <img src={assets.sun} alt=""/> : <img src={assets.moon} alt=""/> }
         </button> */}
 
-        <Link to='/order'><img src={assets.search_icon} alt="" /></Link>
+        {/* <Link to='/order'><img src={assets.search_icon} alt="" /></Link> */}
         <div className='navbar-search-icon'>
           <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
           <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
