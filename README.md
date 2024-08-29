@@ -86,10 +86,6 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 
 For deployment, you can use platforms like Render. Make sure to update the environment variables accordingly.
 
-## Contact
-
-For any queries or support, reach out to us via the "Contact Us" section on the homepage or email us at support@mealmingle.com.
-
 ---
 
 This README provides an overview of your project, setup instructions, and other essential details that developers and users need to get started with "Meal Mingle."
