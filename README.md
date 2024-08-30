@@ -7,13 +7,16 @@ Here’s a sample README file for your "Meal Mingle" project:
 Welcome to **Meal Mingle**, a modern and user-friendly food delivery application built with the MERN stack. Whether you're craving your favorite dishes or exploring new cuisines, Meal Mingle offers a seamless experience from browsing menus to tracking your food delivery.
 
 ## Features
-<u>This text is underlined</u>
+
+
+
 
 
 ### 1. **Homepage**
 - Explore a variety of menus and food items categorized for easy browsing.
 - Get detailed descriptions and pricing for each item.
 - A "Contact Us" section is conveniently located at the footer for inquiries and support.
+- **Dark Theme**: Enjoy a consistent dark theme throughout the entire website, providing a comfortable browsing experience at any time of day.
 
 ### 2. **Cart Page**
 - Review your selected food items.
@@ -39,6 +42,7 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 **Frontend:**
 - React.js: Dynamic user interface
 - Bootstrap/Material-UI: Responsive design and components
+- **Dark Theme**: A consistent dark theme applied across the entire website
 
 **Backend:**
 - Node.js: Server-side runtime
