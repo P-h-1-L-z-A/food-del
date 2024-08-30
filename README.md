@@ -7,6 +7,8 @@ Here’s a sample README file for your "Meal Mingle" project:
 Welcome to **Meal Mingle**, a modern and user-friendly food delivery application built with the MERN stack. Whether you're craving your favorite dishes or exploring new cuisines, Meal Mingle offers a seamless experience from browsing menus to tracking your food delivery.
 
 ## Features
+<u>This text is underlined</u>
+
 
 ### 1. **Homepage**
 - Explore a variety of menus and food items categorized for easy browsing.
