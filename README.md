@@ -1,4 +1,4 @@
-# Meal Mingle
+![image](https://github.com/user-attachments/assets/b8f3f22f-a1ad-4aa6-8af5-35211f73905b)![image](https://github.com/user-attachments/assets/a871429c-d93f-437e-844d-6bf139e8f695)# Meal Mingle
 
 Welcome to **Meal Mingle**, a modern and user-friendly food delivery application built with the MERN stack. Whether you're craving your favorite dishes or exploring new cuisines, Meal Mingle offers a seamless experience from browsing menus to tracking your food delivery.
 
@@ -29,10 +29,16 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 - After payment, you'll be redirected to the Orders page to track your delivery status.
 
 ![image](https://github.com/user-attachments/assets/2088e41a-a9a5-44a7-ab0e-590e653c9f44)
+![image](https://github.com/user-attachments/assets/29f7e557-6ec6-4aab-8dcc-497253504eee)
+![image](https://github.com/user-attachments/assets/fb4e91c0-62a9-428e-ae3f-2feba1cc76c1)
 
 ### 4. **Orders Page**
 - Monitor the status of your food, from preparation to delivery.
 - If the payment fails, you'll be redirected back to the homepage to retry the order.
+
+![image](https://github.com/user-attachments/assets/c1b49ae3-42a9-4dc8-815a-3f605ae30e83)
+![image](https://github.com/user-attachments/assets/2c43d392-8dab-45ce-b9a8-e1f02e5ea8ca)
+![image](https://github.com/user-attachments/assets/4cd5c949-681e-4929-a39e-314bed79b487)
 
 ### 5. **Admin Page**
 - **Add Food Items**: Easily add new dishes to the menu.
@@ -45,6 +51,12 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 - React.js: Dynamic user interface
 - Bootstrap/Material-UI: Responsive design and components
 - **Dark Theme**: A consistent dark theme applied across the entire website
+
+  ![image](https://github.com/user-attachments/assets/e5d8668e-f3e5-4c52-89e4-4f3c223c307a)
+  ![image](https://github.com/user-attachments/assets/eba31feb-5e00-4bd8-92c3-57b40d5da706)
+  ![image](https://github.com/user-attachments/assets/ff56529e-3887-4b01-89c1-1abedc37c23a)
+  ![image](https://github.com/user-attachments/assets/3f626bf5-dbfb-47f7-856a-e1ea23101ecd)
+  ![image](https://github.com/user-attachments/assets/e9437f1b-8424-4df3-becc-82f67399ba03)
 
 **Backend:**
 - Node.js: Server-side runtime
