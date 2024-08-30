@@ -4,21 +4,31 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 
 ## Features
 
+![image](https://github.com/user-attachments/assets/3e797a25-1cc1-4206-9a75-71e2a44deb91)
+![image](https://github.com/user-attachments/assets/cea40cac-abd6-45f6-b1fe-be25590e1cb9)
+![image](https://github.com/user-attachments/assets/36b760fc-d675-4982-be6a-c02de73b8514)
+
 ### 1. **Homepage**
 - Explore a variety of menus and food items categorized for easy browsing.
 - Get detailed descriptions and pricing for each item.
 - A "Contact Us" section is conveniently located at the footer for inquiries and support.
 - **Dark Theme**: Enjoy a consistent dark theme throughout the entire website, providing a comfortable browsing experience at any time of day.
 
+![image](https://github.com/user-attachments/assets/8b64ee8b-bbcc-4ec8-bd15-4212abf395dc)
+
 ### 2. **Cart Page**
 - Review your selected food items.
 - View a detailed breakdown of your order, including item prices and total cost.
 - Apply promo codes for discounts before proceeding to checkout.
 
+![image](https://github.com/user-attachments/assets/498ae1cd-15a8-49d7-aa94-d26900749658)
+
 ### 3. **Checkout Page**
 - Enter your delivery address to ensure your food reaches you without hassle.
 - Make secure payments using credit or debit cards via Stripe's payment gateway.
 - After payment, you'll be redirected to the Orders page to track your delivery status.
+
+![image](https://github.com/user-attachments/assets/2088e41a-a9a5-44a7-ab0e-590e653c9f44)
 
 ### 4. **Orders Page**
 - Monitor the status of your food, from preparation to delivery.
