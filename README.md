@@ -58,7 +58,6 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/P-h-1-L-z-A/food-del.git
-   cd meal-mingle
    ```
 
 2. **Install server dependencies:**
