@@ -28,9 +28,9 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 - If the payment fails, you'll be redirected back to the homepage to retry the order.
 
 ### 5. **Admin Page**
-- Add new food items to the menu with ease.
-- Update the status of food items to keep customers informed.
-- Delete outdated or unavailable food items from the menu.
+- **Add Food Items**: Easily add new dishes to the menu.
+- **Update Food Status**: Keep customers informed by updating the status of their orders.
+- **Delete Food Items**: Remove outdated or unavailable food items from the menu.
 
 ## Technology Stack
 
@@ -80,6 +80,12 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
    npm run dev
    ```
    The app will be available at `https://food-del-frontend-3duj.onrender.com/`.
+
+###Admin Setup
+To access the Admin Page:
+
+-Ensure you have an admin account set up in your MongoDB database.
+-Admins can manage the menu, update food statuses, and delete items directly from the Admin Page.
 
 ### Deployment
 
