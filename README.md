@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b8f3f22f-a1ad-4aa6-8af5-35211f73905b)![image](https://github.com/user-attachments/assets/a871429c-d93f-437e-844d-6bf139e8f695)# Meal Mingle
+# Meal Mingle
 
 Welcome to **Meal Mingle**, a modern and user-friendly food delivery application built with the MERN stack. Whether you're craving your favorite dishes or exploring new cuisines, Meal Mingle offers a seamless experience from browsing menus to tracking your food delivery.
 
