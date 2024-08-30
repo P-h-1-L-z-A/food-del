@@ -1,16 +1,8 @@
-Here’s a sample README file for your "Meal Mingle" project:
-
----
-
 # Meal Mingle
 
 Welcome to **Meal Mingle**, a modern and user-friendly food delivery application built with the MERN stack. Whether you're craving your favorite dishes or exploring new cuisines, Meal Mingle offers a seamless experience from browsing menus to tracking your food delivery.
 
 ## Features
-
-
-
-
 
 ### 1. **Homepage**
 - Explore a variety of menus and food items categorized for easy browsing.
@@ -47,7 +39,11 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 **Backend:**
 - Node.js: Server-side runtime
 - Express.js: Backend framework
-- MongoDB: NoSQL database for storing user, order, and menu data
+- MongoDB: NoSQL database for storing user, order, and menu data, including:
+  - **Order Details**: Storing details of each order.
+  - **Customer Details**: Managing customer information with login and sign-up features.
+  - **Food Item List**: Keeping a record of all food items available in the menu.
+  - **User Sessions**: Maintaining sessions for each user with the help of tokens.
 
 **Payment Integration:**
 - Stripe: Secure payment processing
@@ -87,11 +83,12 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
    ```
    The app will be available at `https://food-del-frontend-3duj.onrender.com/`.
 
-###Admin Setup
+### Admin Setup
+
 To access the Admin Page:
 
--Ensure you have an admin account set up in your MongoDB database.
--Admins can manage the menu, update food statuses, and delete items directly from the Admin Page.
+- Ensure you have an admin account set up in your MongoDB database.
+- Admins can manage the menu, update food statuses, and delete items directly from the Admin Page.
 
 ### Deployment
 
@@ -101,8 +98,11 @@ For deployment, you can use platforms like Render. Make sure to update the envir
 
 This README provides an overview of your project, setup instructions, and other essential details that developers and users need to get started with "Meal Mingle."
 
-The project is deployed using Render.com
+The project is deployed using Render.com:
 
-for admin :-https://food-del-admin-3oae.onrender.com
-for frontend:-https://food-del-frontend-3duj.onrender.com
+- **Admin Page:** [https://food-del-admin-3oae.onrender.com](https://food-del-admin-3oae.onrender.com)
+- **Frontend:** [https://food-del-frontend-3duj.onrender.com](https://food-del-frontend-3duj.onrender.com)
 
+--- 
+
+This README now includes details about using MongoDB for storing order details, customer details, food item list, and maintaining user sessions with tokens.
