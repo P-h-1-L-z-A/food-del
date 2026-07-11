@@ -1,82 +1,63 @@
-// import React, { useContext, useEffect } from 'react'
-// import "./Verify.css"
-// import { useNavigate, useSearchParams } from 'react-router-dom'
-// import { StoreContext } from '../../context/StoreContext';
-// import axios from 'axios';
-
-// const Verify = () => {
-
-//     const [searchParams,setSeachParams] = useSearchParams();
-//     const success = searchParams.get("success")
-//     const orderId = searchParams.get("orderId")
-
-//     const {url} = useContext(StoreContext);
-//     const navigate = useNavigate();
-//     // console.log(success,orderId);
-//     const verifyPayment = async ()=>{
-//         const response = await axios.post(url+"/api/order/verify",{success,orderId})
-//         if(response.data.success){
-//             navigate("/myorders");
-//         }
-//         else{
-//             navigate("/");
-//         }
-//     }
-
-//     useEffect(()=>{
-//         verifyPayment();
-//     })
-
-//   return (
-//     <div className='verify'>
-//     <div className="spinner">
-
-//     </div>
-        
-//     </div>
-//   )
-// }
-
-// export default Verify
-
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./Verify.css";
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 
 const Verify = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const success = searchParams.get("success");
     const orderId = searchParams.get("orderId");
 
-    const { url } = useContext(StoreContext);
+    const { url, setCartItems } = useContext(StoreContext);
     const navigate = useNavigate();
+    const [status, setStatus] = useState("loading"); // "loading" | "success" | "failed"
 
     const verifyPayment = async () => {
         try {
-            const response = await axios.post(url+"/api/order/verify", { success, orderId });
-            // console.log("Verification response:", response.data);
+            const response = await axios.post(url + "/api/order/verify", { success, orderId });
             if (response.data.success) {
-                navigate("/myorders");
+                // Clear frontend cart state after successful payment
+                setCartItems({});
+                setStatus("success");
+                setTimeout(() => navigate("/myorders"), 2500);
             } else {
-                navigate("/");
+                setStatus("failed");
             }
-        } 
-        catch (error) 
-        {
+        } catch (error) {
             console.error("Error verifying payment:", error);
-            navigate("/");
+            setStatus("failed");
         }
     };
 
     useEffect(() => {
         verifyPayment();
-    }, []); // Empty dependency array to ensure it only runs once on mount
+    }, []);
 
     return (
         <div className='verify'>
-            <div className="spinner"></div>
+            {status === "loading" && (
+                <div className="spinner"></div>
+            )}
+            {status === "success" && (
+                <div className="verify-message verify-success">
+                    <div className="verify-icon">✅</div>
+                    <h2>Payment Successful!</h2>
+                    <p>Your order has been placed. Redirecting to your orders...</p>
+                </div>
+            )}
+            {status === "failed" && (
+                <div className="verify-message verify-failed">
+                    <div className="verify-icon">❌</div>
+                    <h2>Payment Not Completed</h2>
+                    <p>Your payment was cancelled or could not be processed.</p>
+                    <p>Don't worry — your cart items are still saved.</p>
+                    <div className="verify-actions">
+                        <button onClick={() => navigate("/order")} className="verify-btn-primary">Try Again</button>
+                        <button onClick={() => navigate("/cart")} className="verify-btn-secondary">Back to Cart</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

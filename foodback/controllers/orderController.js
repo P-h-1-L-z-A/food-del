@@ -18,7 +18,7 @@ const placeOrder = async (req, res) => {
         });
 
         await newOrder.save();
-        await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
+        // Cart is cleared only after successful payment in verifyOrder
 
         const line_items = req.body.items.map((item) => ({
             price_data: {
@@ -63,7 +63,11 @@ const verifyOrder = async(req,res)=>{
     const {orderId,success} = req.body;
     try {
         if(success=="true"){
-            await orderModel.findByIdAndUpdate(orderId,{payment:true});
+            const order = await orderModel.findByIdAndUpdate(orderId,{payment:true});
+            // Clear the user's cart only after confirmed payment
+            if (order) {
+                await userModel.findByIdAndUpdate(order.userId, { cartData: {} });
+            }
             res.json({success:true,message:"Paid"})
         }
         else

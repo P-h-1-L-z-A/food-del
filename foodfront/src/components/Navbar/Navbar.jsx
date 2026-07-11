@@ -44,10 +44,10 @@
 
 
 
-import React, { Profiler, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import { assets } from '../../assets/assets'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowLogin }) => {
@@ -58,6 +58,19 @@ const Navbar = ({ setShowLogin }) => {
   const { getTotalCartAmount,token,setToken } = useContext(StoreContext);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleAnchorClick = (e, sectionId, menuName) => {
+    setMenu(menuName);
+    if (location.pathname !== '/') {
+      e.preventDefault();
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+  };
 
   const logout = ()=>{
       localStorage.removeItem("token");
@@ -81,9 +94,9 @@ const Navbar = ({ setShowLogin }) => {
       <Link to='/'><img src={assets.logo} alt="" className='logo' /></Link>
       <ul className='navbar-menu'>
         <Link to='/' onClick={() => { setMenu("home") }} className={menu === "home" ? "active" : ""}>home</Link>
-        <a href='#explore-menu' onClick={() => { setMenu("menu") }} className={menu === "menu" ? "active" : ""}>menu</a>
-        <a href='#app-download' onClick={() => { setMenu("mobile-app") }} className={menu === "mobile-app" ? "active" : ""}>mobile-app</a>
-        <a href='#footer' onClick={() => { setMenu("contact-us") }} className={menu === "contact-us" ? "active" : ""}>contact us</a>
+        <a href='#explore-menu' onClick={(e) => handleAnchorClick(e, 'explore-menu', 'menu')} className={menu === "menu" ? "active" : ""}>menu</a>
+        <a href='#app-download' onClick={(e) => handleAnchorClick(e, 'app-download', 'mobile-app')} className={menu === "mobile-app" ? "active" : ""}>mobile-app</a>
+        <a href='#footer' onClick={(e) => handleAnchorClick(e, 'footer', 'contact-us')} className={menu === "contact-us" ? "active" : ""}>contact us</a>
       </ul>
       <div className='navbar-right'>
         <label className="toggle-button">
