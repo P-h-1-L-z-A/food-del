@@ -43,7 +43,7 @@ let userData = await userModel.findById(req.body.userId)
     }
     catch(error){
         console.log(error);
-        res.jsonn({success:false, message:Error})
+        res.json({success:false, message:"Error"})
     }
 }
 

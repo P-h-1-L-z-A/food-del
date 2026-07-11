@@ -35,6 +35,4 @@ app.get("/",(req,res)=>{
 app.listen(port,()=>{
     console.log(`Server Started on http://localhost:${port}`)
 })
-
-
-// mongodb+srv://BhavyaFoodDel:01234567890@cluster0.7jzjlye.mongodb.net/?
+
