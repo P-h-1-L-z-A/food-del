@@ -4,7 +4,7 @@ import { assets} from '../../assets/assets'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-const Add = ({url}) => {
+const Add = ({url, isAdmin, adminToken}) => {
 
   // const url = "http://localhost:4000";
   const [image,setImage] = useState(false);
@@ -23,13 +23,21 @@ const Add = ({url}) => {
 
   const onSubmitHandler = async (event)=>{
     event.preventDefault();
+
+    if (!isAdmin) {
+      toast.error("Demo mode: Adding items is disabled. Login as admin to use this feature.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("name",data.name)
     formData.append("description",data.description)
     formData.append("price",Number(data.price))
     formData.append("category",data.category)
     formData.append("image",image)
-    const response = await axios.post(`${url}/api/food/add`,formData);
+    const response = await axios.post(`${url}/api/food/add`,formData, {
+      headers: { token: adminToken }
+    });
     if(response.data.success){
       setData({
         name:"",
@@ -44,32 +52,33 @@ const Add = ({url}) => {
     }
   }
 
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
-
   return (
     <div className='add'>
-    <form className="flex-col" onSubmit={onSubmitHandler}>
+    {!isAdmin && (
+      <div className="demo-overlay-msg">
+        <span>🔒</span> This form is view-only in demo mode. <strong>Login as admin</strong> to add items.
+      </div>
+    )}
+    <form className={`flex-col ${!isAdmin ? 'demo-disabled-form' : ''}`} onSubmit={onSubmitHandler}>
       <div className="add-img-upload flex-col">
         <p>Upload Image</p>
         <label htmlFor="image">
           <img src={image?URL.createObjectURL(image):assets.upload_area} alt="" />
         </label>
-        <input onChange={(e)=>setImage(e.target.files[0])} type="file" id="image" hidden required />
+        <input onChange={(e)=>setImage(e.target.files[0])} type="file" id="image" hidden required disabled={!isAdmin} />
       </div>
       <div className="add-product-name flex-col">
         <p>Product Name</p>
-        <input onChange={onChangeHandler} value={data.name}  type="text" name='name' placeholder='Type here' />
+        <input onChange={onChangeHandler} value={data.name}  type="text" name='name' placeholder='Type here' disabled={!isAdmin} />
       </div>
       <div className="add-product-description flex-col">
           <p>Product Description</p>
-          <textarea onChange={onChangeHandler} value={data.description} name="description" rows="5" placeholder = 'Write Food Details here' required></textarea>
+          <textarea onChange={onChangeHandler} value={data.description} name="description" rows="5" placeholder = 'Write Food Details here' required disabled={!isAdmin}></textarea>
       </div>
       <div className="add-category-price ">
         <div className='add-category flex-col'>
           <p>Product category</p>
-          <select onChange={onChangeHandler} name="category" >
+          <select onChange={onChangeHandler} name="category" disabled={!isAdmin}>
             <option value="Salad">Salad</option>
             <option value="Rolls">Rolls</option>
             <option value="Deserts">Deserts</option>
@@ -82,10 +91,10 @@ const Add = ({url}) => {
         </div>
         <div className="addprice flex-col">
           <p>Product Price</p>
-          <input onChange={onChangeHandler} value={data.price} type="number" name='price' placeholder = '$$$' />
+          <input onChange={onChangeHandler} value={data.price} type="number" name='price' placeholder = '$$$' disabled={!isAdmin} />
         </div>
       </div>
-        <button type = 'submit' className='add-btn'>ADD</button>
+        <button type = 'submit' className={`add-btn ${!isAdmin ? 'add-btn-disabled' : ''}`} disabled={!isAdmin}>ADD</button>
     </form>
     </div>
   )

@@ -40,3 +40,31 @@
     color: white;
     cursor: pointer;
 }
+
+.add-btn-disabled {
+    background-color: #ccc !important;
+    color: #888 !important;
+    cursor: not-allowed !important;
+}
+
+.demo-disabled-form {
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.demo-overlay-msg {
+    background: #fff3e0;
+    border: 1.5px solid #ffb74d;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #5d4037;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.demo-overlay-msg strong {
+    color: #e65100;
+}

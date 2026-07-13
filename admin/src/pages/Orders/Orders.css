@@ -50,3 +50,10 @@
     }
 
 }
+
+.order-select-disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    background-color: #f0f0f0 !important;
+    border-color: #ccc !important;
+}

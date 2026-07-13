@@ -76,4 +76,77 @@ const registerUser = async (req,res)=>{
 }
 
 
-export {loginUser ,registerUser}
+//admin login
+const adminLogin = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.json({ success: false, message: "User Doesn't exist" })
+        }
+
+        if (!user.isAdmin) {
+            return res.json({ success: false, message: "Not authorised. Admin access only." })
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password)
+        if (!isMatch) {
+            return res.json({ success: false, message: "Password didn't Match" })
+        }
+
+        const token = createToken(user._id);
+        res.json({ success: true, token })
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" })
+    }
+}
+
+//admin register — protected by ADMIN_SECRET
+const adminRegister = async (req, res) => {
+    const { name, email, password, adminSecret } = req.body;
+    try {
+        // Verify admin secret key
+        if (!adminSecret || adminSecret !== process.env.ADMIN_SECRET) {
+            return res.json({ success: false, message: "Invalid admin secret key" })
+        }
+
+        // Check if user already exists
+        const exists = await userModel.findOne({ email });
+        if (exists) {
+            return res.json({ success: false, message: "User already exists" })
+        }
+
+        // Validate email
+        if (!validator.isEmail(email)) {
+            return res.json({ success: false, message: "Please enter a valid email" })
+        }
+
+        // Validate password strength
+        if (password.length < 8) {
+            return res.json({ success: false, message: "Password must be at least 8 characters" })
+        }
+
+        // Hash password
+        const salt = await bcrypt.genSalt(12);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const newUser = new userModel({
+            name: name,
+            email: email,
+            password: hashedPassword,
+            isAdmin: true
+        });
+
+        const user = await newUser.save();
+        const token = createToken(user._id);
+        res.json({ success: true, token })
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" })
+    }
+}
+
+export { loginUser, registerUser, adminLogin, adminRegister }

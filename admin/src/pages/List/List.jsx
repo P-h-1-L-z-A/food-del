@@ -3,7 +3,7 @@ import './List.css'
 import axios from "axios"
 import {toast} from "react-toastify"
 
-const List = ({url}) => {
+const List = ({url, isAdmin, adminToken}) => {
 
   // const url = 'http://localhost:4000'
   const [list,setList] = useState([]);
@@ -19,8 +19,13 @@ const List = ({url}) => {
   }
 
   const removeFood = async(foodId)=>{
-    // console.log(foodId);
-    const response = await axios.post(`${url}/api/food/remove`,{id:foodId})
+    if (!isAdmin) {
+      toast.error("Demo mode: Removing items is disabled. Login as admin to use this feature.");
+      return;
+    }
+    const response = await axios.post(`${url}/api/food/remove`,{id:foodId}, {
+      headers: { token: adminToken }
+    })
     await fetchList();
     if(response.data.success){
       toast.success(response.data.message)
@@ -53,7 +58,11 @@ const List = ({url}) => {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>${item.price}</p>
-              <p onClick={()=>removeFood(item._id)} className='cursor'>X</p>
+              {isAdmin ? (
+                <p onClick={()=>removeFood(item._id)} className='cursor list-delete-btn'>X</p>
+              ) : (
+                <p className='list-delete-disabled' title="Login as admin to delete items">X</p>
+              )}
             </div>
           )
         })}

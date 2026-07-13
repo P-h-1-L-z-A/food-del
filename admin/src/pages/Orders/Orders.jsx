@@ -6,7 +6,7 @@ import { toast } from "react-toastify"
 import { useEffect } from 'react'
 import { assets } from "../../assets/assets"
 
-const Orders = ({ url }) => {
+const Orders = ({ url, isAdmin, adminToken }) => {
 
   const [orders, setOrders] = useState([]);
 
@@ -18,15 +18,20 @@ const Orders = ({ url }) => {
 
     }
     else {
-      console.log(error)
       toast.error("Error")
     }
   }
 
   const statusHandler = async(event,orderId)=>{
+    if (!isAdmin) {
+      toast.error("Demo mode: Updating status is disabled. Login as admin to use this feature.");
+      return;
+    }
     const response = await axios.post(url+"/api/order/status",{
       orderId,
       status:event.target.value
+    }, {
+      headers: { token: adminToken }
     })
     if(response.data.success){
       await fetchAllOrders();
@@ -64,7 +69,13 @@ const Orders = ({ url }) => {
             </div>
             <p>Items : {order.items.length}</p>
             <p>${order.amount}</p>
-            <select onChange={(event)=>statusHandler(event,order._id)} value = {order.status}>
+            <select
+              onChange={(event)=>statusHandler(event,order._id)}
+              value = {order.status}
+              disabled={!isAdmin}
+              className={!isAdmin ? 'order-select-disabled' : ''}
+              title={!isAdmin ? 'Login as admin to update status' : ''}
+            >
               <option value="Food Processing">Food Processing</option>
               <option value="Out for Delivery">Out for Delivery</option>
               <option value="Delivered">Delivered</option>

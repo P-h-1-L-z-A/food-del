@@ -14,3 +14,39 @@
     width: 40px;
 }
 
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.navbar-auth-btn {
+    padding: 7px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    border: none;
+}
+
+.navbar-login-btn {
+    background: linear-gradient(135deg, #ff6b35, #e85525);
+    color: #ffffff;
+}
+
+.navbar-login-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
+}
+
+.navbar-logout-btn {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1.5px solid #e5e7eb;
+}
+
+.navbar-logout-btn:hover {
+    background: #e5e7eb;
+}
