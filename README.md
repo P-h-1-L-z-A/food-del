@@ -54,6 +54,12 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 ![Add Page Demo](docs/images/admin_add_demo.png)
 ![Orders Page Demo](docs/images/admin_orders_demo.png)
 
+### 6. **Enhanced User Experience & Promotions**
+- **Promo Codes**: Support for discount codes (e.g., "FREEDEL" for free delivery) which dynamically update cart and checkout totals. Promo codes used are also distinctly highlighted in the Admin Orders panel.
+- **Enforced Authentication**: Guests are seamlessly prompted with a login modal when attempting to checkout, preventing friction.
+- **Interactive UI**: Fluid hover animations (lift, shadow, scale) across all food cards, category images, and buttons for a modern, tactile feel.
+- **Password Visibility**: Convenient toggle (👁️) to show/hide passwords on both the customer login modal and the admin authentication portal.
+
 ## Technology Stack
 
 **Frontend:**

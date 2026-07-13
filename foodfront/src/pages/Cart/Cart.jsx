@@ -1,13 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import "./Cart.css"
 import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom'
 
-const Cart = () => {
+const Cart = ({ setShowLogin }) => {
 
-  const { cartItems, food_list, removeFromCart,getTotalCartAmount,url} = useContext(StoreContext)
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url, token, promoCode, setPromoCode, promoDiscount, setPromoDiscount } = useContext(StoreContext)
 
+  const [promoInput, setPromoInput] = useState("");
   const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    if (!token) {
+      alert("Please login to proceed to checkout");
+      setShowLogin(true);
+    } else {
+      navigate('/order');
+    }
+  }
+
+  const applyPromoCode = () => {
+    if (promoInput === "FREEDEL") {
+      setPromoCode("FREEDEL");
+      setPromoDiscount(5); // Assuming delivery fee is $5
+      alert("Promo code applied! Free delivery.");
+    } else {
+      setPromoCode("");
+      setPromoDiscount(0);
+      alert("Code is either invalid or has expired");
+    }
+  }
 
   return (
     <div className='cart'>
@@ -65,17 +87,18 @@ const Cart = () => {
                 <hr/>
                 <div className='cart-total-details'>
                   <b> Total </b>
-                  <b>$ {getTotalCartAmount()===0?0:getTotalCartAmount()+5}</b>
+                  <b>$ {getTotalCartAmount()===0?0:getTotalCartAmount()+5-promoDiscount}</b>
                 </div>
               </div>
-              <button onClick={()=>navigate('/order')}>Checkout</button>
+              <button onClick={handleCheckout}>Checkout</button>
             </div>
             <div className='cart-promocode'>
               <p>Have a promo code, Enter here:</p>
               <div className='cart-promocode-input'>
-                <input type="text" placeholder='promo-code'/>
-                <button>Submit</button>
+                <input type="text" placeholder='promo-code' value={promoInput} onChange={(e) => setPromoInput(e.target.value)} />
+                <button onClick={applyPromoCode}>Submit</button>
               </div>
+              {promoCode && <p style={{color: 'green', marginTop: '10px'}}>Active Promo: {promoCode}</p>}
             </div>
           </div>
         </>

@@ -61,6 +61,12 @@
     padding: 12px 0px;
     border-radius: 4px;
     cursor:pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cart-total button:hover {
+    background-color: #25b81d;
+    transform: scale(1.02);
 }
 
 .cart-promocode{
@@ -95,6 +101,13 @@
     border: none;
     color: white;
     border-radius:4px ;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cart-promocode-input button:hover {
+    background-color: #333;
+    transform: scale(1.02);
 }
 
 @media ( max-width:750px){

@@ -264,7 +264,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
+  const { getTotalCartAmount, token, food_list, cartItems, url, promoCode, promoDiscount } = useContext(StoreContext);
 
   const [data, setData] = useState({
     firstName: "",
@@ -307,7 +307,8 @@ const PlaceOrder = () => {
     let orderData = {
       address: data,
       items: orderItems,
-      amount: getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 5)
+      amount: getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 5) - promoDiscount,
+      promoCode: promoCode
     };
 
     try {
@@ -376,7 +377,7 @@ const PlaceOrder = () => {
             <hr />
             <div className='cart-total-details'>
               <b>Total</b>
-              <b>$ {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 5}</b>
+              <b>$ {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 5 - promoDiscount}</b>
             </div>
           </div>
 

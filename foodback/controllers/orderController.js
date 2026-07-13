@@ -14,7 +14,8 @@ const placeOrder = async (req, res) => {
             userId: req.body.userId,
             items: req.body.items,
             amount: req.body.amount,
-            address: req.body.address
+            address: req.body.address,
+            promoCode: req.body.promoCode
         });
 
         await newOrder.save();

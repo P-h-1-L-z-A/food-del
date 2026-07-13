@@ -9,6 +9,7 @@ const LoginPopup = ({setShowLogin}) => {
     const {url,setToken} = useContext(StoreContext)
 
     const [currState,setCurrState] = useState("Login")
+    const [showPassword, setShowPassword] = useState(false);
     const [data,setData] = useState({
         name:"",
         email:"",
@@ -61,7 +62,12 @@ const LoginPopup = ({setShowLogin}) => {
                 {currState==="Login"?<></>: <input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder="Your Name " required />}
                
                 <input name='email' onChange={onChangeHandler}  value = {data.email} type="email" placeholder="Your email " required />
-                <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder="Password " required />
+                <div style={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
+                    <input name='password' onChange={onChangeHandler} value={data.password} type={showPassword ? "text" : "password"} placeholder="Password " required style={{ width: '100%' }} />
+                    <span onClick={() => setShowPassword(!showPassword)} style={{ position: 'absolute', right: '15px', cursor: 'pointer', color: '#888' }}>
+                        {showPassword ? "👁️" : "👁️‍🗨️"}
+                    </span>
+                </div>
             </div>
             <button type = 'submit' >{currState === "Sign Up"?"Create account":"Login"}</button>
             <div className='login-popup-condition'>

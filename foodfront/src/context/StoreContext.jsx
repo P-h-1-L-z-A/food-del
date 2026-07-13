@@ -13,6 +13,8 @@ const StoreContextProvider = (props) => {
     const url = "https://food-del-backend-jy0v.onrender.com"
     const [token,setToken] = useState("")
     const [food_list,setFoodList] = useState([])
+    const [promoCode, setPromoCode] = useState("");
+    const [promoDiscount, setPromoDiscount] = useState(0);
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -94,7 +96,11 @@ const StoreContextProvider = (props) => {
         getTotalCartAmount,
         url,
         token,
-        setToken
+        setToken,
+        promoCode,
+        setPromoCode,
+        promoDiscount,
+        setPromoDiscount
     }
 
 

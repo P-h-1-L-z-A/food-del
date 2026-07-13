@@ -12,6 +12,8 @@ const Login = ({ url }) => {
     const [mode, setMode] = useState("login"); // "login" or "register"
     const [data, setData] = useState({ name: "", email: "", password: "", adminSecret: "" });
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showSecret, setShowSecret] = useState(false);
 
     const onChangeHandler = (event) => {
         const name = event.target.name;
@@ -117,29 +119,41 @@ const Login = ({ url }) => {
                     </div>
                     <div className="admin-login-field">
                         <label htmlFor="admin-password">Password</label>
-                        <input
-                            id="admin-password"
-                            name="password"
-                            type="password"
-                            placeholder={mode === "register" ? "Min 8 characters" : "Enter your password"}
-                            onChange={onChangeHandler}
-                            value={data.password}
-                            required
-                        />
+                        <div style={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
+                            <input
+                                id="admin-password"
+                                name="password"
+                                type={showPassword ? "text" : "password"}
+                                placeholder={mode === "register" ? "Min 8 characters" : "Enter your password"}
+                                onChange={onChangeHandler}
+                                value={data.password}
+                                required
+                                style={{ width: '100%' }}
+                            />
+                            <span onClick={() => setShowPassword(!showPassword)} style={{ position: 'absolute', right: '15px', cursor: 'pointer', color: '#888' }}>
+                                {showPassword ? "👁️" : "👁️‍🗨️"}
+                            </span>
+                        </div>
                     </div>
                     {mode === "register" && (
                         <div className="admin-login-field">
                             <label htmlFor="admin-secret">Admin Secret Key</label>
                             <div className="admin-secret-field-hint">Required to authorize admin registration</div>
-                            <input
-                                id="admin-secret"
-                                name="adminSecret"
-                                type="password"
-                                placeholder="Enter the admin secret key"
-                                onChange={onChangeHandler}
-                                value={data.adminSecret}
-                                required
-                            />
+                            <div style={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
+                                <input
+                                    id="admin-secret"
+                                    name="adminSecret"
+                                    type={showSecret ? "text" : "password"}
+                                    placeholder="Enter the admin secret key"
+                                    onChange={onChangeHandler}
+                                    value={data.adminSecret}
+                                    required
+                                    style={{ width: '100%' }}
+                                />
+                                <span onClick={() => setShowSecret(!showSecret)} style={{ position: 'absolute', right: '15px', cursor: 'pointer', color: '#888' }}>
+                                    {showSecret ? "👁️" : "👁️‍🗨️"}
+                                </span>
+                            </div>
                         </div>
                     )}
                     <button type="submit" className="admin-login-btn" disabled={loading}>

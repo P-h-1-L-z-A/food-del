@@ -68,7 +68,10 @@ const Orders = ({ url, isAdmin, adminToken }) => {
               <p className="order-item-phone">{order.address.phone}</p>
             </div>
             <p>Items : {order.items.length}</p>
-            <p>${order.amount}</p>
+            <div className="order-price-promo">
+              <p>${order.amount}</p>
+              {order.promoCode && <span className="promo-badge">Promo: {order.promoCode}</span>}
+            </div>
             <select
               onChange={(event)=>statusHandler(event,order._id)}
               value = {order.status}
