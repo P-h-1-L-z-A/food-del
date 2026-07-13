@@ -40,10 +40,19 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 ![image](https://github.com/user-attachments/assets/2c43d392-8dab-45ce-b9a8-e1f02e5ea8ca)
 ![image](https://github.com/user-attachments/assets/4cd5c949-681e-4929-a39e-314bed79b487)
 
-### 5. **Admin Page**
-- **Add Food Items**: Easily add new dishes to the menu.
-- **Update Food Status**: Keep customers informed by updating the status of their orders.
-- **Delete Food Items**: Remove outdated or unavailable food items from the menu.
+### 5. **Admin Page & Security Features**
+- **Admin Authentication & Authorization**: A secure admin portal with separate authentication to prevent unauthorized modifications to the store data.
+- **Admin Registration Portal**: Safely create new admin accounts from within the admin application using an authorized **Admin Secret Key**.
+- **Interactive Demo Mode**: Visitors can view the entire admin application in a safe, read-only demo mode. They can browse current menu items and order lists, while destructive actions (adding/deleting items, changing order statuses) are fully locked and protected by visual overlays, banners, and toast notifications.
+- **Role-Based API Protection**: The backend enforces `adminAuth` middleware on all state-changing endpoints (`/add`, `/remove`, `/status`), verifying `isAdmin: true` on the database level.
+
+#### Admin Login & Registration:
+![Admin Login](docs/images/admin_login.png)
+
+#### Visitor Demo Mode Banner & Disabled Controls:
+![List Page Demo](docs/images/admin_list_demo.png)
+![Add Page Demo](docs/images/admin_add_demo.png)
+![Orders Page Demo](docs/images/admin_orders_demo.png)
 
 ## Technology Stack
 
@@ -109,8 +118,15 @@ Welcome to **Meal Mingle**, a modern and user-friendly food delivery application
 
 To access the Admin Page:
 
-- Ensure you have an admin account set up in your MongoDB database.
-- Admins can manage the menu, update food statuses, and delete items directly from the Admin Page.
+1. **Option A: Register via UI (Recommended)**:
+   - Navigate to the `/login` route on the Admin Page.
+   - Click **Register** to switch to the registration form.
+   - Fill in your name, email, password, and the **Admin Secret Key** (defined by `ADMIN_SECRET` in your backend `.env` file).
+   - Click **Create Admin Account** to save and login.
+
+2. **Option B: Manually via Database**:
+   - Register a normal account on the frontend.
+   - Access your MongoDB Atlas collections, find your user in the `users` collection, and add/set the field `isAdmin: true` (as a Boolean).
 
 ### Deployment
 
