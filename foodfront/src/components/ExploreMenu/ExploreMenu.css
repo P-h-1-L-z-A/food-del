@@ -67,3 +67,52 @@
         font-size: 14px;
     }
 }
+
+.explore-menu-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.scroll-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    color: #333;
+    transition: background-color 0.2s, transform 0.2s, color 0.2s;
+}
+
+body.dark-theme .scroll-arrow {
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+}
+
+.scroll-arrow:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-50%) scale(1.1);
+}
+
+body.dark-theme .scroll-arrow:hover {
+    background-color: #444;
+}
+
+.scroll-left {
+    left: -20px;
+}
+
+.scroll-right {
+    right: -20px;
+}

@@ -112,7 +112,7 @@
 .food-item {
     width: 100%;
     max-width: 300px; /* Optional: Set a max-width for cards */
-    margin: 15px; /* Adjust margin as needed */
+    margin: 15px auto; /* Adjust margin as needed */
     border-radius: 15px;
     box-shadow: 0px 0px 10px #00000015;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
