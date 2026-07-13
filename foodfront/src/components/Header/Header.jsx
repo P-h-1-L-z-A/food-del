@@ -8,7 +8,7 @@ const Header = () => {
         <div className='header-contents'>
             <h2>Say bye to your cravings</h2>
             <p>Discover a delightful array of flavors with our fresh, innovative dishes, crafted to tantalize your taste buds and elevate your dining experience.</p>
-            <button>View Menu</button>
+            <button onClick={() => document.getElementById('explore-menu')?.scrollIntoView({ behavior: 'smooth' })}>View Menu</button>
         </div>
     </div>
   )

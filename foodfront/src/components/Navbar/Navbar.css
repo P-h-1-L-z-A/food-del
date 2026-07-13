@@ -357,9 +357,61 @@ body.dark-theme .navbar-profile:hover .nav-profile-dropdown {
   }
 }
 
+/* Hide hamburger button by default on desktop */
+.navbar-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #495576;
+  transition: color 0.2s ease;
+}
+
+body.dark-theme .navbar-hamburger {
+  color: #fff;
+}
+
 @media (max-width: 750px) {
+  .navbar-hamburger {
+    display: block;
+  }
+
   .navbar-menu {
     display: none;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-bottom: 2px solid #2bcf21;
+    z-index: 99;
+  }
+
+  body.dark-theme .navbar-menu {
+    background-color: #121212;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+
+  .navbar-menu.mobile-show {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
