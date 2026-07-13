@@ -105,12 +105,10 @@ const Navbar = ({ setShowLogin }) => {
 
       <div className='navbar-right'>
         <label className="toggle-button">
-          <input type="checkbox" onChange={toggleTheme} />
-          <span className = "slider">
-          {theme==="light" ?
-          <div className= "moon"><img src={assets.moon} alt="" /></div>:
-          <div className= "sun"><img src={assets.sun} alt="" /></div>
-          }
+          <input type="checkbox" onChange={toggleTheme} checked={theme === "dark"} />
+          <span className="slider">
+            <div className="moon"><img src={assets.moon} alt="Dark Mode" /></div>
+            <div className="sun"><img src={assets.sun} alt="Light Mode" /></div>
           </span>
         </label>
 

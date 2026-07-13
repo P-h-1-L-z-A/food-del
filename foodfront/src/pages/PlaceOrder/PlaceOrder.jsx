@@ -374,6 +374,15 @@ const PlaceOrder = () => {
               <p>Delivery Fee</p>
               <p>$ {getTotalCartAmount() === 0 ? 0 : 5}</p>
             </div>
+            {promoDiscount > 0 && (
+              <>
+                <hr />
+                <div className='cart-total-details' style={{ color: '#2bcf21' }}>
+                  <p>Promo Discount ({promoCode})</p>
+                  <p>-$ {promoDiscount}</p>
+                </div>
+              </>
+            )}
             <hr />
             <div className='cart-total-details'>
               <b>Total</b>

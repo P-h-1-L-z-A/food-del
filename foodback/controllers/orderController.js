@@ -1,5 +1,6 @@
 import orderModel from "../models/orderModel.js";
 import userModel from '../models/userModel.js';
+import closedOrderModel from '../models/closedOrderModel.js';
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -120,4 +121,26 @@ const updateStatus = async(req,res)=>{
     }
 }
 
-export { placeOrder,verifyOrder,userOrders,listOrders,updateStatus };
+//api for closing order
+const closeOrder = async (req, res) => {
+    try {
+        const { orderId, comments } = req.body;
+        
+        // Save to closed orders
+        const newClosedOrder = new closedOrderModel({
+            orderId,
+            comments
+        });
+        await newClosedOrder.save();
+
+        // Remove from active orders
+        await orderModel.findByIdAndDelete(orderId);
+
+        res.json({ success: true, message: "Order Closed" });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error closing order" });
+    }
+}
+
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, closeOrder };

@@ -22,6 +22,7 @@
     text-align: center;
     margin: 20px 0px;
     overflow-x:scroll;
+    padding: 15px 0;
 }
 
 .explore-menu-list::-webkit-scrollbar{

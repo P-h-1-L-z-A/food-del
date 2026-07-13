@@ -40,14 +40,30 @@
     font-size: max(1vw,13px);
     border-radius:50px;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease;
+}
+
+.header-contents button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-color: #2bcf21;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+    border-radius: 50px;
+}
+
+.header-contents button:hover::before {
+    transform: scaleX(1);
 }
 
 .header-contents button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    background-color: #f8f8f8;
-    color: #495576;
+    color: white;
 }
 
 @media (max-width:1050px){

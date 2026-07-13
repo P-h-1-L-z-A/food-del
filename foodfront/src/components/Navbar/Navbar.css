@@ -173,19 +173,29 @@ body {
 
 .navbar-right .slider .moon img{
   position: absolute;
-  right: 2px;
-  top:3px;
+  right: 4px;
+  top: 3px;
   width: 14px;
   height: 14px;
   z-index: 1;
+  transition: opacity 0.3s;
 }
 .navbar-right .slider .sun img{
-  position: relative;
-  margin-top: 3px;
-  margin-left: 1.5px;
+  position: absolute;
+  left: 4px;
+  top: 3px;
   width: 14px;
   height: 14px;
   z-index: 1;
+  transition: opacity 0.3s;
+}
+
+input:not(:checked) + .slider .sun img {
+  opacity: 0;
+}
+
+input:checked + .slider .moon img {
+  opacity: 0;
 }
 
 

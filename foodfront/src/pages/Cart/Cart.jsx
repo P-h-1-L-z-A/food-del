@@ -8,6 +8,7 @@ const Cart = ({ setShowLogin }) => {
   const { cartItems, food_list, removeFromCart, getTotalCartAmount, url, token, promoCode, setPromoCode, promoDiscount, setPromoDiscount } = useContext(StoreContext)
 
   const [promoInput, setPromoInput] = useState("");
+  const [showPromoPopup, setShowPromoPopup] = useState(false);
   const navigate = useNavigate();
 
   const handleCheckout = () => {
@@ -23,7 +24,8 @@ const Cart = ({ setShowLogin }) => {
     if (promoInput === "FREEDEL") {
       setPromoCode("FREEDEL");
       setPromoDiscount(5); // Assuming delivery fee is $5
-      alert("Promo code applied! Free delivery.");
+      setShowPromoPopup(true);
+      setTimeout(() => setShowPromoPopup(false), 3000);
     } else {
       setPromoCode("");
       setPromoDiscount(0);
@@ -84,6 +86,15 @@ const Cart = ({ setShowLogin }) => {
                   <p>Delivery Fee</p>
                   <p>$ {getTotalCartAmount()===0?0:5}</p>
                 </div>
+                {promoDiscount > 0 && (
+                  <>
+                    <hr/>
+                    <div className='cart-total-details' style={{ color: '#2bcf21' }}>
+                      <p>Promo Discount ({promoCode})</p>
+                      <p>-$ {promoDiscount}</p>
+                    </div>
+                  </>
+                )}
                 <hr/>
                 <div className='cart-total-details'>
                   <b> Total </b>
@@ -98,10 +109,15 @@ const Cart = ({ setShowLogin }) => {
                 <input type="text" placeholder='promo-code' value={promoInput} onChange={(e) => setPromoInput(e.target.value)} />
                 <button onClick={applyPromoCode}>Submit</button>
               </div>
-              {promoCode && <p style={{color: 'green', marginTop: '10px'}}>Active Promo: {promoCode}</p>}
             </div>
           </div>
         </>
+      )}
+
+      {showPromoPopup && (
+        <div className="promo-success-popup">
+          <p>✅ Promo code successfully applied!</p>
+        </div>
       )}
     </div>
   )

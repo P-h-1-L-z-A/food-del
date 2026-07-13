@@ -179,12 +179,6 @@
     right: 15px;
     cursor: pointer;
     border-radius: 50%;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.food-item-img-container .add:hover {
-    transform: scale(1.15);
-    opacity: 0.9;
 }
 
 .food-item-counter {
@@ -198,6 +192,10 @@
     border-radius: 50px;
     background-color: #fff;
     cursor: pointer;
+}
+
+.food-item-counter p {
+    color: black !important;
 }
 
 .food-item-counter img {

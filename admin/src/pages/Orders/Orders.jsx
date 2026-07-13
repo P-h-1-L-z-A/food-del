@@ -9,6 +9,9 @@ import { assets } from "../../assets/assets"
 const Orders = ({ url, isAdmin, adminToken }) => {
 
   const [orders, setOrders] = useState([]);
+  const [closeModalOpen, setCloseModalOpen] = useState(false);
+  const [orderToClose, setOrderToClose] = useState(null);
+  const [closeComments, setCloseComments] = useState("");
 
   const fetchAllOrders = async () => {
     const response = await axios.get(url + "/api/order/list");
@@ -35,6 +38,29 @@ const Orders = ({ url, isAdmin, adminToken }) => {
     })
     if(response.data.success){
       await fetchAllOrders();
+    }
+  }
+
+  const handleCloseOrder = async () => {
+    try {
+      const response = await axios.post(url + "/api/order/close", {
+        orderId: orderToClose,
+        comments: closeComments
+      }, {
+        headers: { token: adminToken }
+      });
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setCloseModalOpen(false);
+        setOrderToClose(null);
+        setCloseComments("");
+        await fetchAllOrders();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error("Error closing order");
     }
   }
 
@@ -83,9 +109,35 @@ const Orders = ({ url, isAdmin, adminToken }) => {
               <option value="Out for Delivery">Out for Delivery</option>
               <option value="Delivered">Delivered</option>
             </select>
+            {order.status === "Delivered" && isAdmin && (
+              <button 
+                className="close-order-btn" 
+                onClick={() => { setOrderToClose(order._id); setCloseModalOpen(true); }}
+              >
+                Close the order
+              </button>
+            )}
           </div>
         ))}
       </div>
+
+      {closeModalOpen && (
+        <div className="close-order-modal-overlay">
+          <div className="close-order-modal">
+            <h4>Close Order</h4>
+            <p>Are you sure you want to close this order?</p>
+            <textarea 
+              placeholder="Any comments..." 
+              value={closeComments}
+              onChange={(e) => setCloseComments(e.target.value)}
+            />
+            <div className="close-order-modal-actions">
+              <button className="btn-yes" onClick={handleCloseOrder}>Yes</button>
+              <button className="btn-no" onClick={() => { setCloseModalOpen(false); setOrderToClose(null); setCloseComments(""); }}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

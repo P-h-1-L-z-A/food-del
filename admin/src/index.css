@@ -37,3 +37,65 @@ hr{
 .cursor{
   cursor: pointer;
 }
+
+/* Dark Theme Overrides for Admin Panel */
+body.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-theme .navbar {
+  border-bottom-color: #333;
+}
+
+body.dark-theme .sidebar {
+  border-right-color: #333;
+  background-color: #121212;
+}
+
+body.dark-theme .sidebar-option {
+  border-color: #333;
+  color: #e0e0e0;
+}
+
+body.dark-theme .sidebar-option.active {
+  background-color: #2bcf2133;
+  border-color: #2bcf21;
+}
+
+body.dark-theme .add-product-name input, 
+body.dark-theme .add-product-description textarea, 
+body.dark-theme .add-category-price select, 
+body.dark-theme .add-category-price input {
+  background-color: #1e1e1e;
+  color: #fff;
+  border-color: #444;
+}
+
+body.dark-theme .list-table-format {
+  border-color: #444;
+  background-color: #1e1e1e;
+}
+
+body.dark-theme .list-table b {
+  color: #fff;
+}
+
+body.dark-theme .order-item {
+  border-color: #444;
+  background-color: #1e1e1e;
+}
+
+body.dark-theme .order-item-name {
+  color: #fff;
+}
+
+body.dark-theme select {
+  background-color: #1e1e1e;
+  color: #fff;
+  border-color: #444;
+}
+
+body.dark-theme hr {
+  background-color: #333;
+}
